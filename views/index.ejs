@@ -184,8 +184,8 @@
             <div class="container" style="width: 70%">
             <form action="">
               <div class="form-group">
-                <label for="exampleFormControlSelect1">Type</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <label for="orderType">Type</label>
+                <select class="form-control" id="orderType">
                   <option>Internal Assesment</option>
                   <option>Extended Essay</option>
                   <option>Structure</option>
@@ -193,30 +193,37 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlSelect1">Subject</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <label for="orderSubject">Subject</label>
+                <select class="form-control" id="orderSubject">
                   <option>Mathematics</option>
                   <option>TOK</option>
                   <option>History</option>
                   <option>Computer Science</option>
+                  <option></option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlSelect1">Level</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <label for="orderLevel">Level</label>
+                <select class="form-control" id="orderLevel">
                   <option>HL</option>
                   <option>SL</option>
                   <option>Studies</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">Title</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                <label for="orderTitle">Title</label>
+                <textarea class="form-control" id="orderTitle" rows="1"></textarea>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">Specifications</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                <label for="orderSpecifications">Specifications</label>
+                <textarea class="form-control" id="orderSpecifications" rows="4"></textarea>
               </div>
+              <!-- Cijena Ordera -->
+              <div class="form-group">
+                <label for="orderPrice">Price ($)</label>
+                <input type="text" name="" id="orderPrice" class="form-control" readonly>
+              </div>
+              <!-- Kraj Cijene Ordera XDDD -->
               <button class="btn btn-primary" type="submit">Submit Order</button>
             </form>
           </div>

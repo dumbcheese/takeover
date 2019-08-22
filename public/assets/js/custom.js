@@ -24,8 +24,9 @@
   
 **/
 
-jQuery(function ($) {
 
+jQuery(function ($) {
+ 
 
   /* ----------------------------------------------------------- */
   /*  1. SEARCH FORM
@@ -270,11 +271,26 @@ var orderType = document.querySelector("#orderType");
 var orderPrice = document.querySelector("#orderPrice");
 var orderLevel = document.querySelector("#orderPrice");
 var orderDate = document.querySelector("#orderDate");
+var orderDeadline = document.querySelector("#orderDeadline");
 
 orderSubject.addEventListener("change", checkPrice);
 orderType.addEventListener("change", checkPrice);
 orderLevel.addEventListener("change", checkPrice);
 orderDate.addEventListener("change", checkPrice);
+
+orderSubject.addEventListener("change", deadline);
+orderType.addEventListener("change", deadline);
+orderLevel.addEventListener("change", deadline);
+orderDate.addEventListener("change", deadline);
+
+function deadline(){
+  if(orderDate.value=="1 Day") {orderDeadline.value=moment().add(1, 'days')}
+  if(orderDate.value=="2 Days") {orderDeadline.value=moment().add(2, 'days')}
+  if(orderDate.value=="4 Days") {orderDeadline.value=moment().add(4, 'days')}
+  if(orderDate.value=="7 Days") {orderDeadline.value=moment().add(7, 'days')}
+  if(orderDate.value=="10 Days") {orderDeadline.value=moment().add(10, 'days')}
+  if(orderDate.value=="14 Days") {orderDeadline.value=moment().add(14, 'days')}
+}
 
 function checkPrice() {
   if (orderType.value == "Extended Essay") {

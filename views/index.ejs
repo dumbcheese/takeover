@@ -184,7 +184,7 @@
             </div>
             <!-- End Title -->
             <div class="container" style="width: 70%">
-            <form action="">
+            <form action="/pay" method="POST">
                 <div class="form-group">
                     <label for="orderEmail">Your Email</label> 
                     <input class="form-control" type="text" id="orderEmail" required>
@@ -247,16 +247,16 @@
                 <!--  -->
               <div class="form-group">
                 <label for="orderTitle">Title</label>
-                <textarea class="form-control" id="orderTitle" rows="1" required></textarea>
+                <textarea class="form-control" id="orderTitle" rows="1" required name="title"></textarea>
               </div>
               <div class="form-group">
                 <label for="orderSpecifications">Specifications</label>
-                <textarea class="form-control" id="orderSpecifications" rows="4" required></textarea>
+                <textarea class="form-control" id="orderSpecifications" rows="4" required name="specifications"></textarea>
               </div>
               <!-- Cijena Ordera -->
               <div class="form-group">
                 <label for="orderPrice">Price ($)</label>
-                <input type="text" name="" id="orderPrice" class="form-control" readonly>
+                <input type="text" name="price" id="orderPrice" class="form-control" readonly>
               </div>
               <!-- Kraj Cijene Ordera XDDD -->
               <button class="btn btn-primary" type="submit">Submit Order</button>

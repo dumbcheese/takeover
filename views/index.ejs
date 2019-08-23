@@ -187,11 +187,11 @@
             <form action="/pay" method="POST">
                 <div class="form-group">
                     <label for="orderEmail">Your Email</label> 
-                    <input class="form-control" type="text" id="orderEmail" required>
+                    <input class="form-control" type="text" id="orderEmail" required name="orderEmail">
                   </div>
               <div class="form-group">
                 <label for="orderType">Type</label>
-                <select class="form-control" id="orderType">
+                <select class="form-control" id="orderType" name="orderType">
                   <option>Internal Assesment</option>
                   <option>Extended Essay</option>
                   <option>Structure</option>
@@ -199,7 +199,7 @@
               </div>
               <div class="form-group">
                 <label for="orderSubject">Subject</label>
-                <select class="form-control" id="orderSubject">
+                <select class="form-control" id="orderSubject" name="orderSubject">
                   <option selected>Theory of Knowledge</option>
                   <option>Business and Management</option>
                   <option>Computer Science</option>
@@ -222,7 +222,7 @@
               </div>
               <div class="form-group">
                 <label for="orderLevel">Level</label> 
-                <select class="form-control" id="orderLevel">
+                <select class="form-control" id="orderLevel" name="orderLevel">
                   <option>HL</option>
                   <option selected>SL</option>
                   <option>Studies</option>
@@ -242,21 +242,21 @@
                 <!-- Forma za deadline, display: none-->
                 <div class="form-group" style="display:none;">
                   <label for="orderDeadline">Deadline</label>
-                  <input type="text" id="orderDeadline">
+                  <input type="text" id="orderDeadline" name = "orderDeadline">
                 </div>
                 <!--  -->
               <div class="form-group">
                 <label for="orderTitle">Title</label>
-                <textarea class="form-control" id="orderTitle" rows="1" required name="title"></textarea>
+                <textarea class="form-control" id="orderTitle" rows="1" required name="orderTitle"></textarea>
               </div>
               <div class="form-group">
                 <label for="orderSpecifications">Specifications</label>
-                <textarea class="form-control" id="orderSpecifications" rows="4" required name="specifications"></textarea>
+                <textarea class="form-control" id="orderSpecifications" rows="4" required name="orderSpecifications"></textarea>
               </div>
               <!-- Cijena Ordera -->
               <div class="form-group">
                 <label for="orderPrice">Price ($)</label>
-                <input type="text" name="price" id="orderPrice" class="form-control" readonly>
+                <input type="text" name="orderPrice" id="orderPrice" class="form-control" readonly>
               </div>
               <!-- Kraj Cijene Ordera XDDD -->
               <button class="btn btn-primary" type="submit">Submit Order</button>

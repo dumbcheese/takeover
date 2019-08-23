@@ -21,9 +21,28 @@ app.get("/", function(req, res){
     res.render("index");
 });
 
+var order={
+    email: "",
+    type:"",
+    subject: "",
+    level: "",
+    deadline: "",
+    title: "",
+    specifications: "",
+    price: ""
+};
 
 app.post("/pay", function(req, res){
-    var price = req.body.price;
+    //POPULATE order objekt za kasniju upotrebu
+    order.email = req.body.orderEmail;
+    order.type= req.body.orderType;
+    order.subject = req.body.orderSubject;
+    order.level = req.body.orderLevel;
+    order.deadline = req.body.orderDeadline;
+    order.title = req.body.orderTitle;
+    order.specifications = req.body.orderSpecifications;
+    order.price = req.body.orderPrice;
+
     var create_payment_json = {
         "intent": "sale",
         "payer": {
@@ -36,18 +55,18 @@ app.post("/pay", function(req, res){
         "transactions": [{
             "item_list": {
                 "items": [{
-                    "name": "Esej1",
+                    "name": order.type + " "  + order.subject,
                     "sku": "001",
-                    "price": "20",
+                    "price": order.price,
                     "currency": "USD",
                     "quantity": 1
                 }]
             },
             "amount": {
                 "currency": "USD",
-                "total": "20",
+                "total": order.price,
             },
-            "description": "AAaaa"
+            "description": order.title + " " + order.specifications
         }]
     };
     
@@ -74,7 +93,7 @@ app.get("/success", function(req, res){
         "transactions": [{
             "amount": {
                 "currency": "USD",
-                "total": "20"
+                "total": order.price
             }
         }]
       };
@@ -85,9 +104,13 @@ app.get("/success", function(req, res){
             throw error;
         } else {
             console.log(JSON.stringify(payment));
-            res.send('Success');
+            res.render("success", {order: order});
         }
     });
+});
+
+app.get("/cancel", function(req, res){
+    res.send("Your order was cancelled for some reason. Please try again or contact info@ibessay.net.")
 });
 
 //SERVER

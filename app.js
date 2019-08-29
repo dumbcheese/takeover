@@ -43,7 +43,7 @@ app.post("/pay", function(req, res){
     order.deadline = req.body.orderDeadline;
     order.title = req.body.orderTitle;
     order.specifications = req.body.orderSpecifications;
-    order.price = req.body.orderPrice;
+    order.price = req.body.orderPrice1;
 
     var create_payment_json = {
         "intent": "sale",

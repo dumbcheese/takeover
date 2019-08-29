@@ -274,12 +274,17 @@ var orderDate = document.querySelector("#orderDate");
 var orderDeadline = document.querySelector("#orderDeadline");
 
 window.onload = checkPrice();
+window.onload = checkPrice1();
 
 orderSubject.addEventListener("change", checkPrice);
 orderType.addEventListener("change", checkPrice);
 orderLevel.addEventListener("change", checkPrice);
 orderDate.addEventListener("change", checkPrice);
 
+orderSubject.addEventListener("change", checkPrice1);
+orderType.addEventListener("change", checkPrice1);
+orderLevel.addEventListener("change", checkPrice1);
+orderDate.addEventListener("change", checkPrice1);
 
 orderSubject.addEventListener("change", deadline);
 orderType.addEventListener("change", deadline);
@@ -365,6 +370,82 @@ function checkPrice() {
   else if(orderType.value == "Structure"){
   
     orderPrice.value = "50";
+    
+  }
+}
+
+//Druga checprice
+
+function checkPrice1() {
+  if (orderType.value == "Extended Essay") {
+    orderPrice1.value = "250";
+    if(orderSubject.value == "Mathematics" || orderSubject.value == "Physics" || orderSubject.value == "Chemistry" || orderSubject.value == "Biology" || orderSubject.value == "Computer Science"){
+      orderPrice1.value = "350";
+      if(orderDate.value == "1 Day"){
+        orderPrice1.value = "450"
+      }
+      else if(orderDate.value == "2 Days"){
+        orderPrice1.value = "420"
+      }
+      else if(orderDate.value == "4 Days"){
+        orderPrice1.value = "400"
+      }
+    }
+    else{
+    if(orderDate.value == "1 Day"){
+      orderPrice1.value = "350"
+    }
+    else if(orderDate.value == "2 Days"){
+      orderPrice1.value = "320"
+    }
+    else if(orderDate.value == "4 Days"){
+      orderPrice1.value = "280"
+    }
+  }
+}
+  else if(orderType.value == "Internal Assesment"){
+  
+    orderPrice1.value = "120";
+    if(orderSubject.value == "Mathematics" || orderSubject.value == "Physics" || orderSubject.value == "Chemistry" || orderSubject.value == "Biology"){
+      orderPrice1.value = "180";
+      if(orderDate.value == "1 Day"){
+        orderPrice1.value = "250"
+      }
+      else if(orderDate.value == "2 Days"){
+        orderPrice1.value = "220"
+      }
+      else if(orderDate.value == "4 Days"){
+        orderPrice1.value = "200"
+      }
+    }
+  else if(orderSubject.value == "Computer Science" || orderSubject.value == "Information and Technology in Global Society(ITGS)"){
+    orderPrice1.value = "260";
+      if(orderDate.value == "1 Day"){
+        orderPrice1.value = "360"
+      }
+      else if(orderDate.value == "2 Days"){
+        orderPrice1.value = "320"
+      }
+      else if(orderDate.value == "4 Days"){
+        orderPrice1.value = "280"
+      }
+  }
+    else{
+    if(orderDate.value == "1 Day"){
+      orderPrice1.value = "170"
+    }
+    else if(orderDate.value == "2 Days"){
+      orderPrice1.value = "150"
+    }
+    else if(orderDate.value == "4 Days"){
+      orderPrice1.value = "130"
+    }
+  }
+  }
+ 
+  else if(orderType.value == "Structure"){
+  
+    orderPrice1.value = "50";
     
   }
 

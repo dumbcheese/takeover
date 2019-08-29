@@ -47,12 +47,14 @@
                     <div class="card-body">
                       <h5 class="card-title">All further information will be sent to your email.</h5>
                       <br>
-                      <p class="card-text">Order Type: </p>
-                      <p class="card-text">Order Subject: </p>
-                      <p class="card-text">Order Level: </p>
-                      <p class="card-text">Order Title: </p>
-                      <p class="card-text">Order Price: </p>
-                      <p class="card-text">Order Deadline: </p>
+                      <p class="card-text"><strong>Your email: </strong><%= order.email %></p>
+                      <p class="card-text"><strong>Order Type: </strong><%= order.type %></p>
+                      <p class="card-text"><strong>Order Subject: </strong><%= order.subject %></p>
+                      <p class="card-text"><strong>Order Level: </strong><%= order.level %></p>
+                      <p class="card-text"><strong>Order Title:</strong> <%= order.title %></p>
+                      <p class="card-text"><strong>Order specifications: </strong><%= order.specifications %></p>
+                      <p class="card-text"><strong>Order Price: </strong><%= order.price %></p>
+                      <p class="card-text"><strong>Order Deadline: </strong><%= order.deadline %></p>
                       <br>
                       <a href="/" class="btn btn-primary" style="margin: 0 auto;">Go Back</a>
                     </div>

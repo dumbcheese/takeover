@@ -5,6 +5,8 @@ var mongoose = require("mongoose");
 var moment = require("moment");
 var paypal = require("paypal-rest-sdk");
 
+mongoose.connect("mongodb://localhost/ibessays", {useNewUrlParser: true});
+
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
     'client_id': 'AZ42Vd2GFRL77poyzElylkxyXA2PyjhhPS_beeOnzzIMJ7N9sOumYGnqxufGwry81owiwg5V3lB0h5U-',

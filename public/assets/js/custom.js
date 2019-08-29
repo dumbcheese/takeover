@@ -273,10 +273,13 @@ var orderLevel = document.querySelector("#orderPrice");
 var orderDate = document.querySelector("#orderDate");
 var orderDeadline = document.querySelector("#orderDeadline");
 
+window.onload = checkPrice();
+
 orderSubject.addEventListener("change", checkPrice);
 orderType.addEventListener("change", checkPrice);
 orderLevel.addEventListener("change", checkPrice);
 orderDate.addEventListener("change", checkPrice);
+
 
 orderSubject.addEventListener("change", deadline);
 orderType.addEventListener("change", deadline);

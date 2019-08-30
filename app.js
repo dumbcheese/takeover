@@ -10,6 +10,8 @@ var ejs = require("ejs");
 
 
 
+mongoose.connect("mongodb://localhost/ibessays", {useNewUrlParser: true});
+
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
     'client_id': 'AZ42Vd2GFRL77poyzElylkxyXA2PyjhhPS_beeOnzzIMJ7N9sOumYGnqxufGwry81owiwg5V3lB0h5U-',
@@ -47,7 +49,7 @@ app.post("/pay", function(req, res){
     order.deadline = req.body.orderDeadline;
     order.title = req.body.orderTitle;
     order.specifications = req.body.orderSpecifications;
-    order.price = req.body.orderPrice;
+    order.price = req.body.orderPrice1;
 
     var create_payment_json = {
         "intent": "sale",

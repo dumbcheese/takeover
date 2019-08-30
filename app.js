@@ -5,12 +5,11 @@ var mongoose = require("mongoose");
 var moment = require("moment");
 var paypal = require("paypal-rest-sdk");
 var nodeMailer = require("nodemailer");
-var fs = require("fs");
 var ejs = require("ejs");
 
 
 
-mongoose.connect("mongodb://localhost/ibessays", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost/ibessays", {useNewUrlParser: true});
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -93,8 +92,8 @@ app.post("/pay", function(req, res){
 });
 
 
-var emailTemplate = fs.readFileSync("./views/email-template.ejs", {encoding: "utf-8"});
-var template = ejs.render(emailTemplate, {order: order});
+
+// var template = ejs.renderFile(__dirname + "/views/email-template.ejs", {order: order});
 
 app.get("/success", function(req, res){ 
     var payerId = req.query.PayerID;
@@ -129,18 +128,36 @@ app.get("/success", function(req, res){
                     pass: 'SevenSamurai'
                 }
             });
-            let mailOptions = {
-                // should be replaced with real recipient's account
-                to: 'damir.h552@gmail.com',
-                subject: order.title,
-                html: template
-            };
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    return console.log(error);
+            ejs.renderFile(__dirname + "/views/email-template.ejs", {order: order}, function(err, data){
+                if(err){
+                    console.log(err);
+                } else{
+                    let mailOptions = {
+                        // should be replaced with real recipient's account
+                        to: 'damir.h552@gmail.com',
+                        subject: order.title,
+                        html: data
+                    };
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return console.log(error);
+                        }
+                        console.log('Message %s sent: %s', info.messageId, info.response);
+                    });
                 }
-                console.log('Message %s sent: %s', info.messageId, info.response);
             });
+            // let mailOptions = {
+            //     // should be replaced with real recipient's account
+            //     to: 'damir.h552@gmail.com',
+            //     subject: order.title,
+            //     html: template
+            // };
+            // transporter.sendMail(mailOptions, (error, info) => {
+            //     if (error) {
+            //         return console.log(error);
+            //     }
+            //     console.log('Message %s sent: %s', info.messageId, info.response);
+            // });
             
         }
     });

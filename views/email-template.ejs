@@ -7,11 +7,19 @@
     <title>Email</title>
 </head>
 <body>
-    <h2>aoihsdgoiasdghiioasgd</h2>
-    <p>aspijdgoiasjdgijos</p>
+    <h2>Thank you for your order from the IBEssays.net team!</h2>
+    <h3>These are the specifications of your order: </h3>
     <hr>
-    <p>saoijdgoisdg</p>
+    
+                     <p><strong>Order Type: </strong><%= order.type %></p>
+                      <p><strong>Order Subject: </strong><%= order.subject %></p>
+                      <p><strong>Order Level: </strong><%= order.level %></p>
+                      <p><strong>Order Title:</strong> <%= order.title %></p>
+                      <p><strong>Order specifications: </strong><%= order.specifications %></p>
+                      <p><strong>Order Price: </strong><%= order.price %></p>
+                      <p><strong>Order Deadline: </strong><%= order.deadline %></p>
 
-    <p> <%= order.title%> <%=order.price %></p>
+    <hr>
+    <h5>You will shortly be contacted by the writer that we will assign to your order. For any further questions, write to us at <em>info@ibessays.net</em></h5>
 </body>
 </html>

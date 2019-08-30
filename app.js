@@ -4,6 +4,11 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var moment = require("moment");
 var paypal = require("paypal-rest-sdk");
+var nodeMailer = require("nodemailer");
+var fs = require("fs");
+var ejs = require("ejs");
+
+
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -14,6 +19,7 @@ paypal.configure({
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+
 
 
 //ROUTES
@@ -84,7 +90,11 @@ app.post("/pay", function(req, res){
     });
 });
 
-app.get("/success", function(req, res){
+
+var emailTemplate = fs.readFileSync("./views/email-template.ejs", {encoding: "utf-8"});
+var template = ejs.render(emailTemplate, {order: order});
+
+app.get("/success", function(req, res){ 
     var payerId = req.query.PayerID;
     var paymentId = req.query.paymentId; 
     
@@ -105,6 +115,31 @@ app.get("/success", function(req, res){
         } else {
             console.log(JSON.stringify(payment));
             res.render("success", {order: order});
+
+            //SENDING MAIL
+            let transporter = nodeMailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    // should be replaced with real sender's account
+                    user: 'damir.h552@gmail.com',
+                    pass: 'SevenSamurai'
+                }
+            });
+            let mailOptions = {
+                // should be replaced with real recipient's account
+                to: 'damir.h552@gmail.com',
+                subject: order.title,
+                html: template
+            };
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    return console.log(error);
+                }
+                console.log('Message %s sent: %s', info.messageId, info.response);
+            });
+            
         }
     });
 });

@@ -4,8 +4,12 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var moment = require("moment");
 var paypal = require("paypal-rest-sdk");
+var nodeMailer = require("nodemailer");
+var ejs = require("ejs");
 
-mongoose.connect("mongodb://localhost/ibessays", {useNewUrlParser: true});
+
+
+// mongoose.connect("mongodb://localhost/ibessays", {useNewUrlParser: true});
 
 paypal.configure({
     'mode': 'live', //sandbox or live
@@ -16,6 +20,7 @@ paypal.configure({
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+
 
 
 //ROUTES
@@ -86,7 +91,11 @@ app.post("/pay", function(req, res){
     });
 });
 
-app.get("/success", function(req, res){
+
+
+// var template = ejs.renderFile(__dirname + "/views/email-template.ejs", {order: order});
+
+app.get("/success", function(req, res){ 
     var payerId = req.query.PayerID;
     var paymentId = req.query.paymentId; 
     
@@ -107,6 +116,49 @@ app.get("/success", function(req, res){
         } else {
             console.log(JSON.stringify(payment));
             res.render("success", {order: order});
+
+            //SENDING MAIL
+            let transporter = nodeMailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    // should be replaced with real sender's account
+                    user: 'damir.h552@gmail.com',
+                    pass: 'SevenSamurai'
+                }
+            });
+            ejs.renderFile(__dirname + "/views/email-template.ejs", {order: order}, function(err, data){
+                if(err){
+                    console.log(err);
+                } else{
+                    let mailOptions = {
+                        // should be replaced with real recipient's account
+                        to: 'damir.h552@gmail.com',
+                        subject: order.title,
+                        html: data
+                    };
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return console.log(error);
+                        }
+                        console.log('Message %s sent: %s', info.messageId, info.response);
+                    });
+                }
+            });
+            // let mailOptions = {
+            //     // should be replaced with real recipient's account
+            //     to: 'damir.h552@gmail.com',
+            //     subject: order.title,
+            //     html: template
+            // };
+            // transporter.sendMail(mailOptions, (error, info) => {
+            //     if (error) {
+            //         return console.log(error);
+            //     }
+            //     console.log('Message %s sent: %s', info.messageId, info.response);
+            // });
+            
         }
     });
 });

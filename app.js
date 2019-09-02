@@ -12,9 +12,9 @@ var ejs = require("ejs");
 // mongoose.connect("mongodb://localhost/ibessays", {useNewUrlParser: true});
 
 paypal.configure({
-    'mode': 'live', //sandbox or live
-    'client_id': 'AZ0S5GsrOVqf_X-2h-SRElrJ6RMqLtnfFiT5LYhwjUTj5GvfuzDLbMG_nCgWYiR4Fm-kMxBbeqOYv2sH',
-    'client_secret': 'EAKG7w6NUoHTSQ0hxB4RzrobGTYFqIAn1GgabDU3uiUj-sGjGYKym3kXooFT_PATE7TFZRZOOd9hkakE'
+    'mode': 'sandbox', //sandbox or live
+    'client_id': 'AZ42Vd2GFRL77poyzElylkxyXA2PyjhhPS_beeOnzzIMJ7N9sOumYGnqxufGwry81owiwg5V3lB0h5U-',
+    'client_secret': 'EOXfpBJpJ_K2wJmPZoUJScp7j88G-Pbp9R3j8yxZBrakTpI1oj-OShrS9Z0uEcS9TO_gfbQFSnWJFYOR'
   });
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -134,7 +134,7 @@ app.get("/success", function(req, res){
                 } else{
                     let mailOptions = {
                         // should be replaced with real recipient's account
-                        to: 'damir.h552@gmail.com',
+                        to: 'damir.h552@gmail.com info@ibessays.net dzankukuljac@gmail.com',
                         subject: order.title,
                         html: data
                     };

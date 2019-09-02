@@ -275,6 +275,7 @@ var orderDeadline = document.querySelector("#orderDeadline");
 
 window.onload = checkPrice();
 window.onload = checkPrice1();
+window.onload = deadline();
 
 orderSubject.addEventListener("change", checkPrice);
 orderType.addEventListener("change", checkPrice);

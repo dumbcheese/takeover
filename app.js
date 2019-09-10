@@ -13,8 +13,8 @@ var ejs = require("ejs");
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id': 'AZ42Vd2GFRL77poyzElylkxyXA2PyjhhPS_beeOnzzIMJ7N9sOumYGnqxufGwry81owiwg5V3lB0h5U-',
-    'client_secret': 'EOXfpBJpJ_K2wJmPZoUJScp7j88G-Pbp9R3j8yxZBrakTpI1oj-OShrS9Z0uEcS9TO_gfbQFSnWJFYOR'
+    'client_id': '///',
+    'client_secret': '///'
   });
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -125,7 +125,7 @@ app.get("/success", function(req, res){
                 auth: {
                     // should be replaced with real sender's account
                     user: 'damir.h552@gmail.com',
-                    pass: 'SevenSamurai'
+                    pass: '///'
                 }
             });
             ejs.renderFile(__dirname + "/views/email-template.ejs", {order: order}, function(err, data){
